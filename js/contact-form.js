@@ -2,6 +2,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('contact-form');
     const submitButton = form.querySelector('.submit-button');
     const formGroups = form.querySelectorAll('.form-group');
+    const messageInput = document.getElementById('message');
+    const charCounter = document.querySelector('.char-counter');
+    const maxLength = 500;
 
     // Form submission handler
     form.addEventListener('submit', async (e) => {
@@ -28,6 +31,9 @@ document.addEventListener('DOMContentLoaded', () => {
             if (response.ok) {
                 showFormMessage('Thank you for your message. We will get back to you within 24 hours.', 'success');
                 form.reset();
+                if (charCounter) {
+                    charCounter.textContent = '0/500';
+                }
             } else {
                 throw new Error('Form submission failed');
             }
@@ -131,22 +137,93 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Character counter for description textarea
-    const descriptionTextarea = form.querySelector('#description');
-    if (descriptionTextarea) {
-        const counter = document.createElement('div');
-        counter.className = 'char-counter';
-        counter.textContent = '0/200';
-        descriptionTextarea.parentNode.appendChild(counter);
-
-        descriptionTextarea.addEventListener('input', () => {
-            const remaining = 200 - descriptionTextarea.value.length;
-            counter.textContent = `${descriptionTextarea.value.length}/200`;
+    if (messageInput && charCounter) {
+        messageInput.addEventListener('input', () => {
+            const remaining = maxLength - messageInput.value.length;
+            charCounter.textContent = `${messageInput.value.length}/${maxLength}`;
             
+            // Add visual feedback
             if (remaining < 50) {
-                counter.style.color = 'var(--accent-green)';
+                charCounter.style.color = 'var(--primary-green)';
             } else {
-                counter.style.color = 'inherit';
+                charCounter.style.color = 'rgba(255, 255, 255, 0.6)';
             }
         });
     }
+
+    // Add CSS for animations
+    const style = document.createElement('style');
+    style.textContent = `
+        .loading-spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(0, 255, 136, 0.3);
+            border-radius: 50%;
+            border-top-color: var(--primary-green);
+            animation: spin 1s linear infinite;
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .form-group {
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+
+        .form-group.focused {
+            transform: translateY(-2px);
+        }
+
+        .form-message {
+            animation: slideIn 0.3s ease forwards;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .success-animation {
+            animation: successPulse 1s ease;
+        }
+
+        @keyframes successPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
+        }
+
+        .error-animation {
+            animation: errorShake 0.5s ease;
+        }
+
+        @keyframes errorShake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+
+        .error {
+            border-color: #ff0000 !important;
+            animation: errorPulse 0.5s ease;
+        }
+
+        @keyframes errorPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
+        }
+    `;
+    document.head.appendChild(style);
 }); 
