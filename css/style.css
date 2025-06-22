@@ -65,7 +65,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-    font-size: 4rem;
+    font-size: 3.5rem;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
     color: var(--white);
     text-shadow: var(--glow);
     background: linear-gradient(45deg, var(--primary-green), var(--secondary-green));
@@ -131,6 +134,21 @@ p {
     text-transform: uppercase;
     letter-spacing: 2px;
     position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    height: 50px;
+    transition: var(--transition);
+}
+
+.logo img:hover {
+    transform: scale(1.05);
+}
+
+.logo-image {
+    height: 50px;
 }
 
 .logo::after {
@@ -146,7 +164,7 @@ p {
 }
 
 .logo:hover::after {
-    transform: scaleX(1);
+    transform: scaleX(0);
 }
 
 .nav-links {
@@ -246,6 +264,13 @@ p {
     color: var(--white);
     margin-bottom: 2rem;
     text-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
+}
+
+.tagline {
+    font-size: 2.2em;
+    font-style: italic;
+    color: var(--primary-green);
+    margin: 1rem 0;
 }
 
 .credential-highlight {
@@ -982,4 +1007,21 @@ p {
 .contact-details a:hover {
     color: var(--secondary-green);
     text-shadow: var(--glow);
+}
+
+.integration-placeholder {
+    width: 100%;
+    height: 800px;
+    border: 1px solid #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #aaa;
+    background-color: #1a1a1a;
+    border-radius: 8px;
+    margin: 2rem 0;
+}
+
+.placeholder-calendar {
+    height: 600px;
 } 
