@@ -116,7 +116,7 @@ document.addEventListener('mousemove', (e) => {
 });
 
 // Glowing effect for interactive elements
-const glowElements = document.querySelectorAll('.cta-button, .primary-cta, .secondary-cta, .submit-button');
+const glowElements = document.querySelectorAll('.cta-button, .primary-cta, .secondary-cta, .submit-button, .service-cta');
 
 glowElements.forEach(element => {
     element.addEventListener('mouseenter', () => {
@@ -235,26 +235,4 @@ style.textContent = `
         }
     }
 `;
-document.head.appendChild(style);
-
-// Form Validation
-const contactForm = document.getElementById('contact-form');
-const emailInput = document.getElementById('email');
-
-emailInput.addEventListener('input', () => {
-    const email = emailInput.value;
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    
-    if (!emailRegex.test(email)) {
-        emailInput.setCustomValidity('Please enter a valid email address');
-    } else {
-        emailInput.setCustomValidity('');
-    }
-});
-
-// Prevent form submission if validation fails
-contactForm.addEventListener('submit', (e) => {
-    if (!contactForm.checkValidity()) {
-        e.preventDefault();
-    }
-}); 
+document.head.appendChild(style); 

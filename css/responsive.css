@@ -96,6 +96,53 @@
     .radio-group {
         flex-direction: column;
     }
+
+    /* Overview Section */
+    .overview-content p {
+        font-size: 1.1rem;
+        line-height: 1.6;
+    }
+
+    /* Service Cards */
+    .service-card {
+        padding: 1.5rem;
+    }
+
+    .service-cta {
+        width: 100%;
+        text-align: center;
+        margin-top: 1rem;
+    }
+
+    /* About Section */
+    .mission-section,
+    .expertise-section,
+    .methodology-section,
+    .values-section {
+        margin-bottom: 2rem;
+    }
+
+    .mission-section p,
+    .expertise-section p,
+    .methodology-section p {
+        font-size: 1rem;
+    }
+
+    /* Contact Page */
+    .contact-form-section,
+    .schedule-section {
+        padding: 2rem 0;
+    }
+
+    .contact-form-section p,
+    .schedule-section p {
+        font-size: 1rem;
+    }
+
+    #google-form-placeholder,
+    #google-calendar-placeholder {
+        height: 600px;
+    }
 }
 
 /* Tablet Styles */
@@ -112,6 +159,22 @@
     .clients-grid,
     .contact-grid {
         grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* Overview Section */
+    .overview-content p {
+        font-size: 1.2rem;
+    }
+
+    /* Service Cards */
+    .service-cta {
+        width: auto;
+    }
+
+    /* Contact Page */
+    #google-form-placeholder,
+    #google-calendar-placeholder {
+        height: 700px;
     }
 }
 
